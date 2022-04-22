@@ -1,1 +1,1 @@
-# yur-uslugi
+# yurudesicheskie-uslugi
