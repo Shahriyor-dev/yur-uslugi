@@ -92,40 +92,147 @@
 						Получить <span style="color: #ffe99c">план вывода</span> компании из кризиса
 					</h2>
 					<div class="quez">
-						<div class="quez-wrapper" id="quez-wrapper">
-							<span class="quez__qvalue">Осталось вопросов: <span id="current">5</span> из <span
-									id="all">5</span></span>
+						<div class="quez-wrapper" id="quez-wrapper"><span class="quez__qvalue">Осталось вопросов:&nbsp;<span id="current">5</span>&nbsp;из&nbsp;<span id="all">5</span></span>
 							<div class="progress__bar">
 								<div class="proggress_barLine" id="progress"></div>
 							</div>
-							<h2 class="title title__main quez__title" id="title"></h2>
 							<div class="row justify-content-between">
-								<form action="/" method="POST" class="quez__items col-12 col-lg-8" id="quez__form">
-									<div class="quez__form row" id="quiz"></div>
-									<span class="quez__attention" style="display: none;" id="attention">*Поля со звездочкой обыязятельны
-										для заполнения</span>
+								<form class="quez__items col-12 col-lg-8" id="quez__form">
+									<div class="quez__form" id="quiz">
+										<div class="quez__list quez__list--active row">
+											<h2 class="title quez__title" id="title">Сфера деятельности вашей компании</h2>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-0" name="sfera" value="Банковская сфера">
+												<label class="quez__item" for="rad-0">Банковская сфера</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-1" name="sfera" value="Авиация">
+												<label class="quez__item" for="rad-1">Авиация</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-2" name="sfera" value="Военно-промышленный комплекс">
+												<label class="quez__item" for="rad-2">Военно-промышленный комплекс</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-3" name="sfera" value="Торговля">
+												<label class="quez__item" for="rad-3">Торговля</label>
+											</div>
+											<div class="quiz__group col-md-12">
+												<input class="quez__radio" type="radio" name="sfera" id="rad-4" data-tab="other">
+												<label class="quez__item" for="rad-4">Другое</label>
+												<input class="quez__input quez__other" type="text" name="sfera" placeholder="Напишите свой вариант" style="display: none;">
+											</div>
+										</div>
+										<div class="quez__list row">
+											<h2 class="title quez__title" id="title">Каким образом санкции повлияли на вашу финансово-хозяйственную деятельность?</h2>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-5" name="sanksy" value="Банковская сфера">
+												<label class="quez__item" for="rad-5">Банковская сфера</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-6" name="sanksy" value="Авиация">
+												<label class="quez__item" for="rad-6">Авиация</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-7" name="sanksy" value="Военно-промышленный комплекс">
+												<label class="quez__item" for="rad-7">Военно-промышленный комплекс</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-8" name="sanksy" value="Торговля">
+												<label class="quez__item" for="rad-8">Торговля</label>
+											</div>
+											<div class="quiz__group col-md-12">
+												<input class="quez__radio" type="radio" name="sanksy" id="rad-9" data-tab="other">
+												<label class="quez__item" for="rad-9">Другое</label>
+												<input class="quez__input quez__other" type="text" name="sanksy" placeholder="Напишите свой вариант" style="display: none;">
+											</div>
+										</div>
+										<div class="quez__list row">
+											<h2 class="title quez__title" id="title">Государсивенное участие в компании?</h2>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-10" name="gosuchast" value="Да">
+												<label class="quez__item" for="rad-10">Да</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-11" name="gosuchast" value="Нет">
+												<label class="quez__item" for="rad-11">Нет</label>
+											</div>
+											<div class="quiz__group col-md-12">
+												<input class="quez__radio" type="radio" name="gosuchast" id="rad-12" data-tab="other">
+												<label class="quez__item" for="rad-12">Другое</label>
+												<input class="quez__input quez__other" type="text" name="gosuchast" placeholder="Напишите свой вариант" style="display: none;">
+											</div>
+										</div>
+										<div class="quez__list row">
+											<h2 class="title quez__title" id="title">Под действие санкции каких стран попала ваша компания?</h2>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-13" name="sanksykomp" value="Компания не попала под санкции напрямую">
+												<label class="quez__item" for="rad-13">Компания не попала под санкции напрямую</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-14" name="sanksykomp" value="Украина">
+												<label class="quez__item" for="rad-14">Украина</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-15" name="sanksykomp" value="Европа">
+												<label class="quez__item" for="rad-15">Европа</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-16" name="sanksykomp" value="США">
+												<label class="quez__item" for="rad-16">США</label>
+											</div>
+											<div class="quiz__group col-md-12">
+												<input class="quez__radio" type="radio" name="sanksykomp" id="rad-17" data-tab="other">
+												<label class="quez__item" for="rad-17">Другие страны</label>
+												<input class="quez__input quez__other" type="text" name="sanksykomp" placeholder="Напишите свой вариант" style="display: none;">
+											</div>
+										</div>
+										<div class="quez__list row">
+											<h2 class="title quez__title" id="title">Есть ли заблокированные счета за рубежом?</h2>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-18" name="scheta" value="Да">
+												<label class="quez__item" for="rad-18">Да</label>
+											</div>
+											<div class="quiz__group col-md-6">
+												<input class="quez__radio" type="radio" id="rad-19" name="scheta" value="Нет">
+												<label class="quez__item" for="rad-19">Нет</label>
+											</div>
+											<div class="quiz__group col-md-12">
+												<input class="quez__radio" type="radio" id="rad-20" name="scheta" value="Заблокированы счета в Российской Федерации">
+												<label class="quez__item" for="rad-20">Заблокированы счета в Российской Федерации</label>
+											</div>
+										</div>
+										<div class="quez__list row">
+											<h2 class="title quez__title" id="title">Ваши контактные данные</h2>
+											<div class="quiz__group col-12">
+												<input class="quez__input" type="text" name="name" placeholder="Как к вам обращаться">
+											</div>
+											<div class="quiz__group col-12">
+												<input class="quez__input" type="text" name="phone" placeholder="Ваш номер телефона">
+											</div>
+											<div class="quiz__group col-12">
+												<input class="quez__input" type="email" name="email" placeholder="Ваш E-mail*" required><span class="quez__attention" id="attention">*Поля со звездочкой обыязятельны для заполнения</span>
+											</div>
+										</div>
+									</div>
 									<div class="btn__group col-md-12">
-										<button id="submit" class="btn" id="submit">Отправить</button>
-										<button type="button" class="btn" id="next">Следующий вопрос</button>
-										<div class="last__ques" id="previous">Предыдущий вопрос</div>
+										<button class="btn" type="submit" style="display:none;" id="submit">Отправить</button>
+										<button class="btn" id="next" type="button">Следующий вопрос</button>
+										<div class="last__ques" id="previous" style="display:none;">Предыдущий вопрос</div>
 									</div>
 								</form>
 								<div class="quez__text quez__phrase d-none d-lg-block col-lg-4 col-xl-3">
-									<p>Каждый бизнес индивидуален и требует персонального подхода.</p>
 									<p>
-										Порядок действий разработан юристами, экономистами, арбитражными и управляющими.
-									</p>
-									<p>
-										Ответив на несколько вопросов, вы получите индивидуальный план антикризисных <br /> мероприятий.
-									</p>
+										 Каждый бизнес индивидуален и требует персонального подхода.</p>
+									<p>Порядок действий разработан юристами, экономистами, арбитражными и управляющими.</p>
+									<p>Ответив на несколько вопросов, вы получите индивидуальный план антикризисных <br /> мероприятий.</p>
 								</div>
 							</div>
 						</div>
 						<div class="quez__success" id="success">
-							<h3 class="quez__success-text">Спасибо, мы получили всю необходимую информацию. План вывода компании из
-								кризиса будет направлен вам по указанному адресу.</h3>
+							<h3 class="quez__success-text">Спасибо, мы получили всю необходимую информацию. План вывода компании из кризиса будет направлен вам по указанному адресу.</h3>
 							<div class="quez__success-btn">
-								<button class="btn" type="button" id="reset">пройти заново</button>
+								<button class="btn" id="reset" type="button">Пройти заново</button>
 							</div>
 						</div>
 					</div>
@@ -548,73 +655,6 @@
 		</div>
 	</footer>
 </body>
-<script>
-	window.data = {
-		myQuestions: [{
-				id: '0',
-				question: "Сфера деятельности вашей компании",
-				answers: [
-					"Банковская сфера",
-					" Авиация",
-					"Военно-промышленный комплекс",
-					"Торговля",
-					"Другое",
-				],
-			},
-			{
-				id: '1',
-				question: "Каким образом санкции повлияли на вашу финансово-хозяйственную деятельность?",
-				answers: [
-					"Банковская сфера",
-					" Авиация",
-					"Военно-промышленный комплекс",
-					"Торговля",
-					"Другое",
-				],
-			},
-			{
-				id: '2',
-				question: "Государсивенное участие в компании?",
-				answers: ["Да", "Нет", "Другое"],
-			},
-			{
-				id: '3',
-				question: "Под действие санкции каких стран попала ваша компания?",
-				answers: [
-					"Компания не попала под санкции напрямую",
-					"Украина",
-					"Европа",
-					"США",
-					"Другие страны",
-				],
-			},
-			{
-				id: '4',
-				question: "Есть ли заблокированные счета за рубежом?",
-				answers: ["Да", "Нет", "Заблокированы счета в Российской Федерации "],
-			},
-		],
-		submitForms: [{
-			title: 'Ваши контактные данные',
-			inputs: [{
-					type: 'text',
-					placeholder: 'Как к вам обращаться',
-					required: false
-				},
-				{
-					type: 'text',
-					placeholder: "Ваш номер телефона",
-					required: false
-				},
-				{
-					type: 'email',
-					placeholder: "Ваш E-mail*",
-					required: true
-				}
-			]
-		}]
-	}
-</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.1.3/swiper-bundle.min.js"
 	integrity="sha512-dLuSIV553xT28AiFViM1ZQdOlyts81E3xiQvfiltddvQ0RViD99nY8sNlRx5o/9J18BYoRQV+PHo9dGWRv3vjA=="
