@@ -1,104 +1,90 @@
-(function () {
+"use strick"
+
+document.addEventListener("DOMContentLoaded", function () {
   // Variables
-  const quizContainer = document.getElementById('quiz');
-  const quizTitle = document.getElementById('title');
-  const allQuestions = document.getElementById('all');
-  const currentQuestion = document.getElementById('current');
+  const nextButton = document.getElementById('next');
+  const prevButton = document.getElementById('previous');
+  const submitButton = document.querySelector('.quez button[type=submit]');
+  const quizBlocks = document.getElementsByClassName('quez__list');
   const proggressBar = document.getElementById('progress');
+  const allQuestion = document.getElementById('all');
+  const currentQuestion = document.getElementById('current');
+  const otherInput = document.querySelectorAll('[data-tab]');
+  const quizInputs = document.querySelectorAll('.quez input[type="radio"]:checked');
+  const emailInput = document.querySelector('.quez input[type="email"]');
   const attentionText = document.getElementById('attention');
-  const restartBtn = document.getElementById('reset');
-  const submitButton = document.getElementById('submit');
-  const previousButton = document.getElementById("previous");
-  const nextButton = document.getElementById("next");
+  const quezForm = document.querySelector('#quez__form');
   const quizWrapper = document.getElementById('quez-wrapper');
   const quizSuccess = document.getElementById('success');
-  let emailInput = null;
+  const restartBtn = document.getElementById('reset');
+
   let currentSlide = 0;
-  let answers = {
-    answer: [],
-    contact: []
+
+  // QUIZ STEP INFO
+  const quizStepInfo = () => {
+    allQuestion.innerHTML = quizBlocks.length - 1;
+    currentQuestion.innerHTML = (quizBlocks.length - 1) - currentSlide;
   };
-  myQuestions = data.myQuestions
-  submitForms = data.submitForms
-  // Functions
-  function buildQuiz() {
-    // variable to store the HTML output
-    const output = myQuestions[currentSlide];
-    if (currentSlide < myQuestions.length) {
 
-      let element = []
-
-      for (let i = 0; i < output.answers.length; i++) {
-        element.push(
-          `<div class="quiz__group">
-            <input type="radio" class="quez__radio" id="rad-${i}" name="quez" value='${output.answers[i]}'/>
-            <label class="quez__item" for="rad-${i}">${output.answers[i]}</label>
-          </div>`
-        )
-      }
-      
-      quizTitle.innerHTML = `<span>${currentSlide + 1}.&nbsp;${output.question}</span>`
-      quizContainer.innerHTML = element.join("");
-    }
-
-    allQuestions.innerHTML = myQuestions.length
-
-    checkCurrentQuestion()
-  }
-
-  function checkCurrentQuestion() {
-    if (currentSlide === myQuestions.length) {
-      currentQuestion.innerHTML = 0
-    } else {
-      currentQuestion.innerHTML = myQuestions.length - currentSlide
-    }
-  }
-
-  function addValue() {
-    let checkbox = document.getElementsByName("quez");
-
-    for (let i = 0; i < checkbox.length; i++) {
-      if (checkbox[i].checked) {
-        answers.answer.push(checkbox[i].value)
-      }
-    }
-  }
-
-  function deleteValue() {
-    answers.answer.pop();
-  }
-
-  function progressUpdate() {
-    if (currentSlide < myQuestions.length) {
-      const currentValue = ((currentSlide + 1) / myQuestions.length) * 100 + '%';
+  // progressBar function
+  const progressUpdate = () => {
+    if (currentSlide < quizBlocks.length) {
+      const currentValue = ((currentSlide + 1) / quizBlocks.length) * 100 + '%';
       proggressBar.style.width = currentValue;
     }
-  }
+  };
 
-  function showSlide(n) {
+  //show hide button
+  const showSlide = (n) => {
     currentSlide = n;
     if (currentSlide === 0) {
-      previousButton.style.display = 'none';
-      attentionText.style.display = 'none';
+      prevButton.style.display = 'none';
     } else {
-      previousButton.style.display = 'inline-block';
+      prevButton.style.display = 'inline-block';
     }
-    if (currentSlide === myQuestions.length) {
+    if (currentSlide === (quizBlocks.length - 1)) {
       nextButton.style.display = 'none';
-      submitButton.style.display = 'inline-block';
-      attentionText.style.display = 'inline-block';
+      submitButton.style.display = 'block';
     } else {
       nextButton.style.display = 'inline-block';
       submitButton.style.display = 'none';
-      attentionText.style.display = 'none';
     }
+    [].forEach.call(quizBlocks, function (el) {
+      el.classList.remove("quez__list--active");
+    });
+    quizBlocks[currentSlide].classList.add('quez__list--active');
+  };
+
+  // SHOW OTHER INPUT
+  const showOtherVariant = (e) => {
+    const currentTarget = e.target;
+    const getOtherInput = currentTarget.parentElement.querySelector('.quez__other');
+    document.getElementById('quiz').addEventListener('change', () => {
+      currentTarget.checked ? getOtherInput.style.display = "block" : getOtherInput.style.display = "none";
+      getOtherInput.focus();
+    })
   }
 
-  function validateEmail(email) {
+  // SHOW NEXT SLIDE
+  const showNextSlide = () => {
+    showSlide(currentSlide + 1);
+    quizStepInfo();
+    progressUpdate();
+  };
+
+  // SHOW PREV SLIDE
+  const showPreviousSlide = () => {
+    showSlide(currentSlide - 1);
+    quizStepInfo();
+    progressUpdate();
+  };
+
+  // VALIDATE EMAIL INPUT
+  const validateEmail = (email) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
-  
+
   const validate = () => {
     const email = emailInput.value;
     if (validateEmail(email)) {
@@ -116,84 +102,42 @@
 
       return false;
     }
-  }
+  };
 
-  function showContact() {
-    if (currentSlide === myQuestions.length) {
-      quizTitle.innerHTML = submitForms[0].title
-
-      let output = [];
-      submitForms[0].inputs.forEach((item) => {
-        output.push(
-          `<div class="quiz__group quiz__group--12">
-            <input type="${item.type}" class="quez__input qContact" name="${item.type}" ${item.type == 'email' ? 'id="email"' : ''} placeholder='${item.placeholder}' ${item.required ? 'required' : ''}/>
-          </div>`
-        )
-      })
-
-      quizContainer.innerHTML = output.join("");
-      
-      emailInput = document.getElementById('email');
-      emailInput.addEventListener('input', validate);
-    }
-  }
-
-  function showNextSlide() {
-    showSlide(currentSlide + 1);
-    progressUpdate();
-    addValue();
-    setTimeout(() => {
-      buildQuiz();
-      showContact();
-    }, 100);
-  }
-
-  function showPreviousSlide() {
-    showSlide(currentSlide - 1);
-    progressUpdate();
-    deleteValue();
-    setTimeout(() => {
-      buildQuiz();
-      showContact();
-    }, 100);
-  }
-
-  function showSuccess() {
-    if (validate()) {
-      quizWrapper.style.display = 'none';
-      quizSuccess.style.display = 'flex';
-    }
-  }
-
-  function restartQuiz() {
-    answers.answer = []
-    answers.contact = []
+  //RESTART FORM
+  const restartQuiz = () => {
     currentSlide = 0
+    quezForm.reset()
     quizWrapper.style.display = 'flex';
     quizSuccess.style.display = 'none';
     emailInput.classList.remove("success", "error");
     attentionText.classList.remove("success", "error");
     showSlide(currentSlide);
-    buildQuiz();
     progressUpdate();
+
+    document.querySelectorAll('.quez__other').forEach((item) => {
+      item.style.display = 'none';
+    });
   }
 
+  //SHOW SUCCESS FORM
+  const showSuccess = () => {
+    quizWrapper.style.display = 'none';
+    quizSuccess.style.display = 'flex';
+  };
 
-  async function sendData() {
-    let contactInput = document.getElementsByClassName('qContact');
+  //SUBMIT FORMS
+  const submitForm = async (e) => {
 
-    for (let i = 0; i < contactInput.length; i++) {
-      answers.contact.push(contactInput[i].value)
-    }
-
+    let formData = $('#quez__form').serializeArray();
     if (validate()) {
-      await fetch('https://jsonplaceholder.typicode.com/posts', {
+      await fetch('sendmail.php', {
         method: 'post',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(answers),
+        body: JSON.stringify(formData),
       }).then((res) => {
         if (res.status === 201) {
           showSuccess();
@@ -204,20 +148,22 @@
     }
   }
 
-  // Kick things off
-  buildQuiz();
+  // INIT
+  quizStepInfo();
   progressUpdate();
-  showContact();
-  // Show the first slide
   showSlide(currentSlide);
 
-  // Event listeners
-  submitButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    sendData();
-  });
-  previousButton.addEventListener("click", showPreviousSlide);
+
+  //EVENT LISTENER
+  emailInput.addEventListener('input', validate);
+  prevButton.addEventListener("click", showPreviousSlide);
   nextButton.addEventListener("click", showNextSlide);
   restartBtn.addEventListener("click", restartQuiz);
-
-})();
+  submitButton.addEventListener("click", function(e) {
+    e.preventDefault();
+    submitForm()
+  });
+  otherInput.forEach(tab => {
+    tab.addEventListener('click', showOtherVariant);
+  })
+});

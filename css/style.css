@@ -90,9 +90,33 @@ progress::-webkit-progress-value {
     margin: 0 auto;
 }
 
+.quez::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(51,51,51,0.9) url('../img/loading.gif') center / 50px no-repeat;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.quez._sending::after {
+    opacity: 1;
+    visibility: visible;
+}
+
 @media screen and (max-width: 1200px){
     .quez {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .quez {
+        padding: 20px 15px;
     }
 }
 
@@ -101,8 +125,24 @@ progress::-webkit-progress-value {
 }
 
 .quez .quez__title {
+    margin-bottom: 0;
     font-size: 35px;
     color: #f9f9f9;
+}
+
+.quez__list {
+	row-gap: 25px;
+	display: none;
+}
+
+.quez__list--active {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.quez__other {
+	margin-top: 25px;
 }
 
 .quez__qvalue {
@@ -136,21 +176,6 @@ progress::-webkit-progress-value {
 
 .quiz__group {
     position: relative;
-    max-width: 50%;
-}
-
-@media screen and (max-width: 768px) {
-    .quiz__group {
-        max-width: 100%;
-    }
-}
-
-.quiz__group--12 {
-    max-width: 100%;
-}
-
-.quiz__group:last-child {
-    max-width: 100%;
 }
 
 .quez__item:hover>.quez__radio {
@@ -168,6 +193,7 @@ progress::-webkit-progress-value {
 .quez-wrapper {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .quez__success {
@@ -372,11 +398,11 @@ button {
 
 button::after {
     content: "";
-    width: 317px;
+    width: 97%;
     z-index: -10;
     height: 20px;
-    left: 0;
-    transform: translateX(4px);
+    left: 50%;
+    transform: translateX(-50%);
     position: absolute;
     bottom: -7px;
     z-index: -100;
@@ -435,9 +461,21 @@ button::after {
     position: relative;
     width: 100%;
     height: 20px;
+    margin-bottom: 45px;
     background: #1A191F;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 29px;
+}
+
+@media screen and (max-width: 768px) {
+    .progress__bar {
+        margin-bottom: 20px;
+    }
+    .quez .quez__title {
+        margin-bottom: 20px;
+        font-size: 20px;
+        line-height: 114.9%;
+    }
 }
 
 .proggress_barLine {
@@ -446,7 +484,6 @@ button::after {
     top: 0;
     display: block;
     height: 100%;
-    width: 20%;
     background-color: #FFD950;
     border-radius: 35px;
     background: repeating-linear-gradient(130deg, #ffdf6e, #ffdf6e 10px, #ffd950 0px, #ffd950 20px);
@@ -563,38 +600,12 @@ button::after {
     }
 }
 
-@media screen and (max-width: 412px) {
-    .wrap {
-        justify-content: center;
-        align-items: center;
-        display: flex;
-    }
-    .container {
-        width: 96%;
-    }
-    .btn {
-        width: 250px;
-    }
-    button::after {
-        width: 97%;
-    }
-    .quez__form {
-        width: 100%;
-    }
-    .quez__item {
-        width: 100%;
-    }
-}
-
 @media screen and (max-width: 340px) {
     .quez__item {
         width: 100%;
     }
     .last__ques {
         text-align: center;
-    }
-    .btn {
-        width: 60vmin;
     }
     .title__main {
         font-size: 20px;
@@ -1892,17 +1903,10 @@ body {
     .btn {
         font-size: 15.0184px;
         line-height: 173.4%;
-        width: 306px;
-    }
-    .btn::after {
-        width: 302px;
+        width: 100%;
     }
     progress {
         margin-top: 10px;
-    }
-    .progress__bar {
-        margin-bottom: 10px;
-        height: auto;
     }
     .quiz-form .container,
     .btn__group {
